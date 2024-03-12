@@ -32,26 +32,40 @@ class ProductFactory(factory.Factory):
 
     id = factory.Sequence(lambda n: n)
    ## Add code to create Fake Products 
- name = FuzzyChoice(
+class ProductFactory(factory.Factory):
+    """Creates fake products for testing"""
+
+    class Meta:
+        """Maps factory to data model"""
+
+        model = Product
+
+    id = factory.Sequence(lambda n: n)
+    name = FuzzyChoice(
         choices=[
-            "IPHONE15",
-            "IPAD AIR",
-            "APPLE WATCH SE",
-            "MACBOOK AIR",
-            "MACBOOK PRO",
-            "IPAD PRO",
-            "APPLE WATCH ULTRA 2"
+            "Hat",
+            "Pants",
+            "Shirt",
+            "Apple",
+            "Banana",
+            "Pots",
+            "Towels",
+            "Ford",
+            "Chevy",
+            "Hammer",
+            "Wrench"
         ]
     )
     description = factory.Faker("text")
-    price = FuzzyDecimal(0.5, 5000.0, 2)
+    price = FuzzyDecimal(0.5, 2000.0, 2)
     available = FuzzyChoice(choices=[True, False])
     category = FuzzyChoice(
         choices=[
             Category.UNKNOWN,
-            Category.SMARTWATCH,
-            Category.LAPTOP,
-            Category.TABLET,
-            Category.MOBILEPHONE
+            Category.CLOTHS,
+            Category.FOOD,
+            Category.HOUSEWARES,
+            Category.AUTOMOTIVE,
+            Category.TOOLS,
         ]
     )
